@@ -6,7 +6,7 @@ function MapComponent() {
 
     const [markers, setMarker] = useState([]);
     const mapRef = useRef(null);
-    const markerRef = useRef(null)
+    const markerRef = useRef()
     const [value, setValue] = useState('');
     const [id, setID] = useState(0)
 
@@ -30,8 +30,10 @@ function MapComponent() {
 
     }
 
-    const onDragEnded = () => {
-        console.log(markerRef.current.geometry._coordinates)
+    const onDragEnded = (e, marker) => {
+        // console.log(markerRef.current.ref.geometry._coordinates, markerRef.current.idx)
+        // console.log(markerRef.ref.current.geometry._coordinates)
+        console.log(e.originalEvent.target.geometry._coordinates, marker.idx)
     }
 
     const onValueChange = (event) => {
@@ -47,10 +49,10 @@ function MapComponent() {
                     {markers.map(marker =>
                         <Placemark geometry={marker.latlng} 
                             key = {marker.idx}
-                            instanceRef = {ref => (markerRef.current = ref)}
+                            instanceRef = {ref => (markerRef.current = { ref: ref, idx: marker.idx} )}
                             properties={{
                                 hintContent: marker.title,
-                                balloonContent: 'Stack Overflow на русском',
+                                balloonContent: marker.title,
 
                             }}
                             modules={
@@ -59,7 +61,7 @@ function MapComponent() {
                             options={{
                                 draggable: true
                             }} 
-                            onDragEnd = {onDragEnded}/>)
+                            onDragEnd = {(event) => onDragEnded(event, marker)}/>)
                     }
                 </Map>
             </YMaps>
