@@ -16,8 +16,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 const MarkerList =( {markers, onClick} ) => {
-
-    // console.log(markers)
     return (
         <ul className="list-group">
                 {markers.map((marker, index) =>

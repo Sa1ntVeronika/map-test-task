@@ -15,12 +15,10 @@ const mapDispatchToProps = dispatch => {
         newCenter: center => dispatch(updateCenter(center)),
         markerDraged: (payload) => dispatch(moveMarker(payload))
     }
-    // submit: value => dispatch(createMarker(value))
 }
 
 function MapComponent(state) {
-    const { markers, mapCenter, newCenter, markerDraged } = state
-    // const [markers, setMarker] = useState([]);
+    const { markers, newCenter, markerDraged } = state
     const mapRef = useRef(null);
 
     console.log({state}, 'map')

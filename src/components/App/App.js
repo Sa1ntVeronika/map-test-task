@@ -8,7 +8,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="container">
-                <div>Hi</div>
+                <h1>Привет! </h1>
                 <Map />
                 <Input></Input>
                 <MarkerList></MarkerList>
